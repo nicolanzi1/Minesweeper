@@ -10,11 +10,11 @@ class MinesweeperGame
 
     def initialize(size)
         layout = LAYOUTS[size]
-        @board = Board.new(layout[grid_size], layout[:num_bombs])
+        @board = Board.new(layout[:grid_size], layout[:num_bombs])
     end
 
     def play
-        until @board.won? || board.lost?
+        until @board.won? || @board.lost?
             puts @board.render
 
             action, pos = get_move

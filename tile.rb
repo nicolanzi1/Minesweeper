@@ -25,7 +25,7 @@ class Tile
         @explored
     end
 
-    def flagged
+    def flagged?
         @flagged
     end
 
@@ -56,7 +56,7 @@ class Tile
         adjacent_coords = DELTAS.map do |(dx, dy)|
             [pos[0] + dx, pos[1] + dy]
         end.select do |row, col|
-            |row, col|.all? do |coord|
+            [row, col].all? do |coord|
                 coord.between?(0, @board.grid_size - 1)
             end
         end
@@ -71,7 +71,7 @@ class Tile
     def render
         if flagged?
             "F"
-        elsif epxlored?
+        elsif explored?
             adjacent_bomb_count == 0 ? "_" : adjacent_bomb_count.to_s
         else
             "*"
